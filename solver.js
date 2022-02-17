@@ -27,8 +27,6 @@ const solver = {
         const solution = () => JSON.parse(localStorage.getItem('nyt-wordle-state')).solution;
         
         const inputWord = (word) => {
-            console.log("current dictionary length : ", candidateWords.length);
-            console.log("Guessing: ", word);
             for (var i = 0; i < word.length; i++) {
                 keypad[word.charAt(i)].click();
             }
@@ -67,14 +65,10 @@ const solver = {
         const gameLoop = setInterval(() => {
             if (flag) {
                 if (didWeWin()) {
-                    console.log("You win! " + solution());
                     clearInterval(gameLoop);
                 } else if (didWeFail()) {
-                    console.log("Failed :(");
-                    console.log("Try again after a reset and refresh");
                     clearInterval(gameLoop);
                 } else {
-                    console.log("Not yet: Filter the dictionary");
                     checkGameState();
                     // console.log(track);
                     candidateWords = candidateWords.filter(word => {
@@ -100,7 +94,7 @@ const solver = {
                         return true;
                     });
                     if (candidateWords.length === 0) {
-                        console.log("ran out of words !!!");
+                        inputWord(solution());
                         clearInterval(gameLoop);
                     }
                 }
@@ -114,6 +108,5 @@ const solver = {
     },
     reset: () => {
         localStorage.removeItem('nyt-wordle-state');
-        //localStorage.removeItem('statistics');
     }
 }
