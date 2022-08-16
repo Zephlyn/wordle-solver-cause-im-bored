@@ -14,7 +14,7 @@ const solver = {
         }
         ds.forEach((row, rowIndex) => {
             row.forEach((col, colIndex) => {
-                keypad[col] = document.querySelector("body > game-app").shadowRoot.querySelector("#game > game-keyboard").shadowRoot.querySelector(`#keyboard > div:nth-child(${rowIndex+1}) > button:nth-child(${colIndex+1})`);
+                keypad[col] = document.querySelector("body > wordle-app-game").shadowRoot.querySelector("#game > Keyboard-module_keyboard__1HSnn").shadowRoot.querySelector(`#keyboard > div:nth-child(${rowIndex+1}) > button:nth-child(${colIndex+1})`);
             })
         });
         var ENTER = "↵";
